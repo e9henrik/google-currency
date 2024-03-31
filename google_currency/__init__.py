@@ -237,7 +237,8 @@ def convert(currency_from, currency_to, amnt, replace_commas=True):
             if replace_commas:
                 converted_currency = converted_currency.replace(',', '')
             else:
-                locale.setlocale(locale.LC_ALL, '')
+                current_locale = '.'.join(locale.getlocale())
+                locale.setlocale(locale.LC_ALL, current_locale)
                 converted_currency = locale.atof(converted_currency)
 
             default_response["amount"]    = converted_currency
